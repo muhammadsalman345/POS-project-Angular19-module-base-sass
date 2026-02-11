@@ -1,11 +1,9 @@
 // Sub se upar import karein
-@import "./app/theme/variables";
+@import "./styles/variables";
 
-// Ab aap yahan variables use kar sakte hain global classes ke liye
-// body {
-//   background-color: $white;
-//   color: $dark-grey;
-// }
 body{
-  background-color: var(--body-bg);
+  background-color: var(--bg-body);
+}
+.form-text{
+    color: var(--bg-body);
 }

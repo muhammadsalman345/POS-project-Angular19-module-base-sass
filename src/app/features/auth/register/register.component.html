@@ -1,16 +1,179 @@
-<div class="register-container shadow-sm mt-5">
-  <h2 class="register-title">Create Your Account</h2>
-  
-  <form [formGroup]="registerForm">
-    <div class="mb-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Email Address</mat-label>
-        <input matInput formControlName="email">
-      </mat-form-field>
-    </div>
+<div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+                        <h3 class="mb-0">
+                            <i class="fas fa-user-plus me-2"></i>Registration Form
+                        </h3>
+                        <p class="mb-0 small">Create your account</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <form>
+                            <!-- Name Field -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label fw-semibold">
+                                        <i class="fas fa-user text-primary me-1"></i>First Name
+                                    </label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label fw-semibold">
+                                        <i class="fas fa-user text-primary me-1"></i>Last Name
+                                    </label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name">
+                                </div>
+                            </div>
 
-    <button mat-button class="submit-btn w-100" type="submit">
-      Register Now
-    </button>
-  </form>
-</div>
+                            <!-- Email Field -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-semibold">
+                                    <i class="fas fa-envelope text-primary me-1"></i>Email Address
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </span>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+
+                            <!-- Password Field -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label fw-semibold">
+                                    <i class="fas fa-lock text-primary me-1"></i>Password
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-lock text-primary"></i>
+                                    </span>
+                                    <input type="password" class="form-control" id="password" placeholder="Create password">
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password Field -->
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label fw-semibold">
+                                    <i class="fas fa-lock text-primary me-1"></i>Confirm Password
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-lock text-primary"></i>
+                                    </span>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
+                                </div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="mb-3">
+                                <label for="phone" class="form-label fw-semibold">
+                                    <i class="fas fa-phone text-primary me-1"></i>Phone Number
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-phone text-primary"></i>
+                                    </span>
+                                    <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+                                </div>
+                            </div>
+
+                            <!-- Gender Selection -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                    <i class="fas fa-venus-mars text-primary me-1"></i>Gender
+                                </label>
+                                <div class="d-flex gap-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="male">
+                                        <label class="form-check-label" for="male">
+                                            Male
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="female">
+                                        <label class="form-check-label" for="female">
+                                            Female
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="other">
+                                        <label class="form-check-label" for="other">
+                                            Other
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div class="mb-3">
+                                <label for="dob" class="form-label fw-semibold">
+                                    <i class="fas fa-calendar text-primary me-1"></i>Date of Birth
+                                </label>
+                                <input type="date" class="form-control" id="dob">
+                            </div>
+
+                            <!-- Country Selection -->
+                            <div class="mb-3">
+                                <label for="country" class="form-label fw-semibold">
+                                    <i class="fas fa-globe text-primary me-1"></i>Country
+                                </label>
+                                <select class="form-select" id="country">
+                                    <option selected disabled>Select your country</option>
+                                    <option>Pakistan</option>
+                                    <option>India</option>
+                                    <option>USA</option>
+                                    <option>UK</option>
+                                    <option>Canada</option>
+                                    <option>Australia</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="mb-3">
+                                <label for="address" class="form-label fw-semibold">
+                                    <i class="fas fa-home text-primary me-1"></i>Address
+                                </label>
+                                <textarea class="form-control" id="address" rows="2" placeholder="Enter your address"></textarea>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms">
+                                    <label class="form-check-label" for="terms">
+                                        I agree to the <a href="#" class="text-primary text-decoration-none">Terms & Conditions</a> and <a href="#" class="text-primary text-decoration-none">Privacy Policy</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill">
+                                    <i class="fas fa-user-plus me-2"></i>Register Now
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary rounded-pill">
+                                    <i class="fas fa-undo me-2"></i>Reset Form
+                                </button>
+                            </div>
+
+                            <!-- Login Link -->
+                            <div class="text-center mt-4">
+                                <p class="mb-0">Already have an account? 
+                                    <a href="#" class="text-primary fw-bold text-decoration-none">Login here</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer bg-white text-center py-3 rounded-bottom-4">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-shield-alt text-primary me-1"></i>
+                            Your information is secure with us
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
