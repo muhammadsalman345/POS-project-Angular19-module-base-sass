@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+// Sub se upar import karein
+@import "./app/theme/variables";
+
+// Ab aap yahan variables use kar sakte hain global classes ke liye
+// body {
+//   background-color: $white;
+//   color: $dark-grey;
+// }
+body{
+  background-color: var(--body-bg);
+}
