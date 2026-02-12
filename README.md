@@ -57,3 +57,52 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+// project strucutre 
+src/
+├── app/
+│   ├── core/
+│   │   ├── services/
+│   │   │   ├── api.service.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── theme.service.ts
+│   │   │   └── error-handler.service.ts
+│   │   ├── interceptors/
+│   │   │   ├── auth.interceptor.ts
+│   │   │   ├── error.interceptor.ts
+│   │   │   └── loading.interceptor.ts
+│   │   ├── guards/
+│   │   │   └── auth.guard.ts
+│   │   └── models/
+│   │       └── user.model.ts
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── loading-spinner/
+│   │   │   └── error-message/
+│   │   ├── directives/
+│   │   │   └── theme.directive.ts
+│   │   └── pipes/
+│   │       └── truncate.pipe.ts
+│   ├── features/
+│   │   ├── auth/
+│   │   │   ├── components/
+│   │   │   │   ├── login/
+│   │   │   │   └── register/
+│   │   │   └── auth-routing.module.ts
+│   │   ├── dashboard/
+│   │   │   ├── components/
+│   │   │   │   └── dashboard/
+│   │   │   └── dashboard-routing.module.ts
+│   │   └── profile/
+│   └── layout/
+│       ├── header/
+│       ├── sidebar/
+│       └── footer/
+├── assets/
+│   └── themes/
+│       ├── light-theme.scss
+│       └── dark-theme.scss
+└── environments/
+    ├── environment.ts
+    └── environment.prod.ts
