@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, timeout, retry } from 'rxjs/operators';
-// import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'https://dummyjson.com'; // Replace with environment.apiUrl in production
+  private baseUrl = environment.apiUrl;
   private defaultTimeout = 30000;
 
   constructor(
