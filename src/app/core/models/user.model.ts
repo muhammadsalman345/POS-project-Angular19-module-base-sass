@@ -12,9 +12,18 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
-  name: string;
-  email: string;
-  password: string;
+  email: string;           // "test10@example.com"
+  password: string;        // "" - but should be required
+  firstName: string;       // "John"
+  lastName: string;        // "Doe"
+  phoneNumber: string;     // "gdfgdf" - should validate numbers
+  address: string;         // "123 Main St"
+  // Optional fields agar aapke backend mein hain
+  address2: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
 }
 
 export interface ApiResponse<T> {

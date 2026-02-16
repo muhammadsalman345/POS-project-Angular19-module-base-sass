@@ -1,210 +1,235 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8">
-      <mat-card class="registration-card mat-elevation-z8">
-        
-        <!-- Card Header -->
-        <mat-card-header class="card-header">
-          <div class="header-content">
-            <mat-icon class="header-icon">app_registration</mat-icon>
-            <div>
-              <mat-card-title>Registration Form</mat-card-title>
-              <mat-card-subtitle>Create your account</mat-card-subtitle>
-            </div>
+<!-- features/auth/components/register/register.component.html -->
+<div class="container-fluid min-vh-100 py-4 d-flex align-items-center" 
+     style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));">
+  <div class="row justify-content-center w-100 mx-0">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      
+      <!-- Main Card -->
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4 p-xl-5">
+          
+          <!-- Header -->
+          <div class="text-center mb-4">
+            <i class="fas fa-user-plus fa-3x mb-3" style="color: var(--primary-color);"></i>
+            <h3 class="fw-bold">Create Account</h3>
+            <p class="text-muted">Fill in your details to register</p>
           </div>
-        </mat-card-header>
 
-        <mat-divider></mat-divider>
-
-        <!-- Card Body - Form -->
-        <mat-card-content>
-          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+          <!-- Form -->
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             
-            <!-- Name Fields Row -->
+            <!-- Name Row -->
             <div class="row">
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>First Name</mat-label>
-                  <input matInput formControlName="firstName" placeholder="Enter your first name">
-                  <mat-icon matPrefix class="field-icon">person</mat-icon>
-                  <mat-error *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
-                    {{ getErrorMessage('firstName') }}
-                  </mat-error>
-                </mat-form-field>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-user me-2" style="color: var(--primary-color);"></i>
+                  First Name <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg"
+                  [class.is-invalid]="f['firstName'].invalid && f['firstName'].touched"
+                  formControlName="firstName"
+                  placeholder="John">
+                <div class="invalid-feedback" *ngIf="f['firstName'].invalid && f['firstName'].touched">
+                  <span *ngIf="f['firstName'].errors?.['required']">First name required</span>
+                  <span *ngIf="f['firstName'].errors?.['minlength']">Minimum 2 characters</span>
+                  <span *ngIf="f['firstName'].errors?.['pattern']">Only letters allowed</span>
+                </div>
               </div>
 
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Last Name</mat-label>
-                  <input matInput formControlName="lastName" placeholder="Enter your last name">
-                  <mat-icon matPrefix class="field-icon">person</mat-icon>
-                  <mat-error *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched">
-                    {{ getErrorMessage('lastName') }}
-                  </mat-error>
-                </mat-form-field>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-user me-2"></i>
+                  Last Name <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg"
+                  [class.is-invalid]="f['lastName'].invalid && f['lastName'].touched"
+                  formControlName="lastName"
+                  placeholder="Doe">
+                <div class="invalid-feedback" *ngIf="f['lastName'].invalid && f['lastName'].touched">
+                  <span *ngIf="f['lastName'].errors?.['required']">Last name required</span>
+                  <span *ngIf="f['lastName'].errors?.['minlength']">Minimum 2 characters</span>
+                  <span *ngIf="f['lastName'].errors?.['pattern']">Only letters allowed</span>
+                </div>
               </div>
             </div>
 
-            <!-- Email Field -->
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Email Address</mat-label>
-              <input matInput formControlName="email" placeholder="Enter your email" type="email">
-              <mat-icon matPrefix class="field-icon">email</mat-icon>
-              <mat-error *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
-                {{ getErrorMessage('email') }}
-              </mat-error>
-              <mat-hint>We'll never share your email with anyone else.</mat-hint>
-            </mat-form-field>
-
-            <!-- Password Fields Row -->
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Password</mat-label>
-                  <input matInput [type]="hidePassword ? 'password' : 'text'" 
-                         formControlName="password" placeholder="Create password">
-                  <mat-icon matPrefix class="field-icon">lock</mat-icon>
-                  <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
-                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
-                  <mat-error *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
-                    {{ getErrorMessage('password') }}
-                  </mat-error>
-                </mat-form-field>
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-envelope me-2" style="color: var(--primary-color);"></i>
+                Email Address <span class="text-danger">*</span>
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-light">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <input 
+                  type="email" 
+                  class="form-control form-control-lg"
+                  [class.is-invalid]="f['email'].invalid && f['email'].touched"
+                  formControlName="email"
+                  placeholder="test10@example.com">
               </div>
-
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Confirm Password</mat-label>
-                  <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" 
-                         formControlName="confirmPassword" placeholder="Confirm password">
-                  <mat-icon matPrefix class="field-icon">lock</mat-icon>
-                  <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
-                    <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
-                  <mat-error *ngIf="registrationForm.hasError('passwordMismatch') && 
-                                  registrationForm.get('confirmPassword')?.touched">
-                    {{ getErrorMessage('confirmPassword') }}
-                  </mat-error>
-                </mat-form-field>
+              <div class="invalid-feedback" *ngIf="f['email'].invalid && f['email'].touched">
+                <span *ngIf="f['email'].errors?.['required']">Email required</span>
+                <span *ngIf="f['email'].errors?.['email']">Valid email required</span>
               </div>
             </div>
 
             <!-- Phone Number -->
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Phone Number</mat-label>
-              <span matPrefix class="phone-prefix">+92</span>
-              <input matInput formControlName="phone" placeholder="3001234567" type="tel">
-              <mat-icon matSuffix>phone</mat-icon>
-              <mat-error *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched">
-                {{ getErrorMessage('phone') }}
-              </mat-error>
-            </mat-form-field>
-
-            <!-- Gender and DOB Row -->
-            <div class="row">
-              <div class="col-md-6">
-                <label class="gender-label">Gender</label>
-                <mat-radio-group formControlName="gender" class="gender-group">
-                  <mat-radio-button value="male">Male</mat-radio-button>
-                  <mat-radio-button value="female">Female</mat-radio-button>
-                  <mat-radio-button value="other">Other</mat-radio-button>
-                </mat-radio-group>
-                <mat-error *ngIf="registrationForm.get('gender')?.invalid && registrationForm.get('gender')?.touched" 
-                          class="gender-error">
-                  Please select a gender
-                </mat-error>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-phone me-2" style="color: var(--primary-color);"></i>
+                Phone Number <span class="text-danger">*</span>
+              </label>
+              <div class="row g-2">
+                <div class="col-4 col-md-3">
+                  <select class="form-select form-select-lg" formControlName="countryCode">
+                    <option *ngFor="let country of countries" [value]="country.code">
+                      {{ country.code }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-8 col-md-9">
+                  <input 
+                    type="tel" 
+                    class="form-control form-control-lg"
+                    [class.is-invalid]="f['phoneNumber'].invalid && f['phoneNumber'].touched"
+                    formControlName="phoneNumber"
+                    placeholder="1234567890">
+                </div>
               </div>
-
-              <div class="col-md-6">
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Date of Birth</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Select date">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-error *ngIf="registrationForm.get('dob')?.invalid && registrationForm.get('dob')?.touched">
-                    Please select your date of birth
-                  </mat-error>
-                </mat-form-field>
+              <div class="invalid-feedback" *ngIf="f['phoneNumber'].invalid && f['phoneNumber'].touched">
+                <span *ngIf="f['phoneNumber'].errors?.['required']">Phone number required</span>
+                <span *ngIf="f['phoneNumber'].errors?.['pattern']">Enter 10-15 digits only</span>
               </div>
+              <small class="text-muted">Format: 1234567890 (without spaces or special chars)</small>
             </div>
 
-            <!-- Country Selection -->
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Country</mat-label>
-              <mat-select formControlName="country">
-                <mat-option *ngFor="let country of countries" [value]="country">
-                  {{country}}
-                </mat-option>
-              </mat-select>
-              <mat-icon matPrefix class="field-icon">public</mat-icon>
-              <mat-error *ngIf="registrationForm.get('country')?.invalid && registrationForm.get('country')?.touched">
-                Please select your country
-              </mat-error>
-            </mat-form-field>
-
-            <!-- Address Field -->
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Address</mat-label>
-              <textarea matInput formControlName="address" rows="3" 
-                        placeholder="Enter your complete address"></textarea>
-              <mat-icon matPrefix class="field-icon">home</mat-icon>
-              <mat-error *ngIf="registrationForm.get('address')?.invalid && registrationForm.get('address')?.touched">
-                Please enter your address
-              </mat-error>
-            </mat-form-field>
-
-            <!-- Terms and Conditions -->
-            <section class="terms-section">
-              <mat-checkbox formControlName="terms" color="primary">
-                I agree to the 
-                <a href="#" class="terms-link">Terms & Conditions</a> and 
-                <a href="#" class="terms-link">Privacy Policy</a>
-              </mat-checkbox>
-              <mat-error *ngIf="registrationForm.get('terms')?.invalid && registrationForm.get('terms')?.touched" 
-                        class="terms-error">
-                You must agree to terms and conditions
-              </mat-error>
-            </section>
-
-            <!-- Buttons -->
-            <div class="button-group">
-              <button mat-raised-button color="primary" type="submit" 
-                      [disabled]="isLoading" class="submit-btn">
-                <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
-                <span *ngIf="!isLoading">
-                  <mat-icon>app_registration</mat-icon>
-                  Register Now
+            <!-- Address -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-map-marker-alt me-2" style="color: var(--primary-color);"></i>
+                Address <span class="text-danger">*</span>
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-light">
+                  <i class="fas fa-home"></i>
                 </span>
-              </button>
-              
-              <button mat-stroked-button type="button" (click)="resetForm()" class="reset-btn">
-                <mat-icon>refresh</mat-icon>
-                Reset Form
-              </button>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg"
+                  [class.is-invalid]="f['address'].invalid && f['address'].touched"
+                  formControlName="address"
+                  placeholder="123 Main St">
+              </div>
+              <div class="invalid-feedback" *ngIf="f['address'].invalid && f['address'].touched">
+                Address required
+              </div>
             </div>
+
+            <!-- Password Row -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-lock me-2" style="color: var(--primary-color);"></i>
+                  Password <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                  <input 
+                    [type]="hidePassword ? 'password' : 'text'"
+                    class="form-control form-control-lg"
+                    [class.is-invalid]="f['password'].invalid && f['password'].touched"
+                    formControlName="password"
+                    placeholder="••••••••">
+                  <button 
+                    class="btn btn-outline-secondary" 
+                    type="button"
+                    (click)="hidePassword = !hidePassword">
+                    <!-- <i class="fas" [ngClass]="hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i> -->
+                  </button>
+                </div>
+                <div class="invalid-feedback" *ngIf="f['password'].invalid && f['password'].touched">
+                  <span *ngIf="f['password'].errors?.['required']">Password required</span>
+                  <span *ngIf="f['password'].errors?.['minlength']">Minimum 6 characters</span>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-check-circle me-2"></i>
+                  Confirm Password <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                  <input 
+                    [type]="hideConfirmPassword ? 'password' : 'text'"
+                    class="form-control form-control-lg"
+                    [class.is-invalid]="registerForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched"
+                    formControlName="confirmPassword"
+                    placeholder="••••••••">
+                  <button 
+                    class="btn btn-outline-secondary" 
+                    type="button"
+                    (click)="hideConfirmPassword = !hideConfirmPassword">
+                    <!-- <i class="fas" [ngClass]="hideConfirmPassword ? 'fa-eye' : 'fa-eye-slash'"></i> -->
+                  </button>
+                </div>
+                <div class="invalid-feedback" *ngIf="registerForm.errors?.['passwordMismatch']">
+                  Passwords do not match
+                </div>
+              </div>
+            </div>
+
+            <!-- Terms -->
+            <div class="mb-4">
+              <div class="form-check">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input" 
+                  id="acceptTerms"
+                  formControlName="acceptTerms"
+                  [class.is-invalid]="f['acceptTerms'].invalid && f['acceptTerms'].touched">
+                <label class="form-check-label" for="acceptTerms">
+                  I accept the <a href="#" class="text-decoration-none">Terms & Conditions</a>
+                </label>
+                <div class="invalid-feedback" *ngIf="f['acceptTerms'].invalid && f['acceptTerms'].touched">
+                  You must accept terms
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              class="btn btn-primary w-100 py-3 fw-bold"
+              [disabled]="loading">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+              <i class="fas fa-user-plus me-2" *ngIf="!loading"></i>
+              {{ loading ? 'Creating Account...' : 'Register' }}
+            </button>
 
             <!-- Login Link -->
-            <div class="login-link">
-              <p>Already have an account? 
-                <a href="#" class="login-link-text">Login here</a>
+            <div class="text-center mt-4">
+              <p class="mb-0 text-muted">
+                Already have an account? 
+                <a routerLink="/auth/login" class="text-decoration-none fw-bold">
+                  Sign In
+                </a>
               </p>
             </div>
-
           </form>
-        </mat-card-content>
-
-        <mat-divider></mat-divider>
-
-        <!-- Card Footer -->
-        <mat-card-footer class="card-footer">
-          <div class="footer-content">
-            <mat-icon class="footer-icon">security</mat-icon>
-            <span>Your information is secure with us</span>
-          </div>
-        </mat-card-footer>
-
-      </mat-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

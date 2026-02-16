@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   register(userData: RegisterRequest): Observable<User> {
-    return this.apiService.post<ApiResponse<User>>('auth/register', userData)
+    return this.apiService.post<ApiResponse<User>>('auth/signup', userData)
       .pipe(
         map(response => {
           if (response.success && response.data) {
